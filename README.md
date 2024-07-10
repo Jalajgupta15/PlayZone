@@ -1,5 +1,6 @@
-# 4-in-ONE : https://jalajgupta15.github.io/5-in-ONE/menu.html
+# 4-in-ONE 
 
+https://jalajgupta15.github.io/5-in-ONE/menu.html
 
 This project is a collection of various web-based games, developed using HTML, CSS, and JavaScript. The games included in this project are:
 
