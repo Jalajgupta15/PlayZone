@@ -1,0 +1,136 @@
+<!doctype html>
+
+<html lang="en"> 
+
+ <head> 
+
+  <meta charset="UTF-8"> 
+
+  <title>Sign in</title> 
+
+  <link rel="shortcut icon" type="image" href="img/gi.jpg">
+  <link rel="stylesheet" href="./style1.css"> 
+
+ </head> 
+
+ <body> <!-- partial:index.partial.html --> 
+
+  <section> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> 
+
+   <div class="signin"> 
+
+    <div class="content"> 
+
+     <h2>Sign In</h2> 
+
+     <div class="form">
+      
+      <form id="regis-form">
+
+      <div class="inputBox"> 
+
+       <input id="login-user" type="text" required> <i>Username</i> 
+
+      </div> 
+
+      <div class="inputBox"> 
+
+       <input id="login-pass" type="password" required> <i>Password</i> 
+
+      </div> 
+
+      <div class="links"> <a href="#"></a> 
+      <a href="regis.html">Signup</a> 
+
+      </div> 
+
+      <div class="inputBox"> 
+
+       <input type="submit" value="Login" onclick="login()"> 
+
+      </div> 
+
+      </form>
+
+     </div> 
+
+    </div> 
+
+   </div> 
+
+  </section> <!-- partial --> 
+
+  <script type="application/javascript">
+
+    const loginForm = document.getElementById('regis-form');
+
+    function login() {
+
+
+      const loginUser = document.getElementById('login-user').value;
+      const loginPass = document.getElementById('login-pass').value;
+
+      const suser = localStorage.getItem(loginUser);
+      if(suser){
+         const user = JSON.parse(suser);
+         if(user.regisPassword === loginPass){
+          const cuser = user.regisUsername;
+          localStorage.setItem('curuser', cuser);
+          window.location.href = 'menu.html';
+          alert('Log in successful!');
+         }else{
+          alert('Wrong Password!');
+         }
+      }else{
+        alert('User does not exist!');
+      }
+
+    }
+
+  </script>
+ </body>
+
+</html>
