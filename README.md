@@ -14,6 +14,7 @@ Car Game (car.html): A simple car driving game with obstacles.
 
 
 How to Run
+
 Clone the repository to your local machine.
 Open index.html in your web browser to start the main menu.
 From the main menu, navigate to the different games and enjoy playing!
