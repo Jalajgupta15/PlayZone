@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image" href="img/gi.jpg">
+  <link rel="stylesheet" href="style.css">
+  <title>High Score</title>
+</head>
+<body>
+  <section> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> 
+    <span></span> <span></span> <span></span> 
+
+   <div class="signin"> 
+    
+    <div class="content"> 
+
+      <div class="links"> 
+
+        <a id="uname"href=""></a> 
+        
+        <a href="#"></a> 
+        
+  
+      </div> 
+     
+
+      <div class="hscore" id="hscorer"> </div>
+      <div class="hscore" id="hscore"> </div>
+      
+
+      <div class="links"> 
+
+        <a href="snake.html">Back to Game</a> 
+        
+        <a href="index.html" onclick="logout()">Log out</a> 
+        
+  
+      </div> 
+     
+
+    </div> 
+
+   </div> 
+
+  </section>
+
+  <script type="application/javascript">
+  document.getElementById('uname').innerText = 'Hello '+localStorage.getItem('curuser') + '!';
+
+  document.getElementById('hscorer').innerText = 'Highest Scorer is ' +JSON.parse(localStorage.getItem('score')).curuser ;
+  
+  document.getElementById('hscore').innerText = 'Highest Score is ' +JSON.parse(localStorage.getItem('score')).score;
+
+  function logout(){
+    localStorage.removeItem('curuser');
+  }
+  </script>
+  
+</body>
+</html>
