@@ -1,0 +1,329 @@
+<!doctype html>
+
+<html lang="en"> 
+
+<head>
+    <title>Game Menu</title>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="hsl(221 90% 98%)" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="Canvas" media="(prefers-color-scheme: dark)">
+   
+
+  <link rel="shortcut icon" type="image" href="img/gi.jpg">
+  <link rel="stylesheet" href="./style1.css"> 
+
+
+  <style>
+
+
+
+      
+ 
+  
+
+   
+.threeD-button-set {
+  --y: 10.1deg;
+  --x: -6.35deg;
+  --distance: 1px;
+  --theme: hsl(180 100% 50%);
+  --theme-bg: hsl(180 100% 50% / 25%);
+  --theme-bg-hover: hsl(180 100% 50% / 40%);
+  --theme-text: white;
+  --theme-shadow: hsl(180 100% 10% / 25%);
+
+  --_max-rotateY: 10deg;
+  --_max-rotateX: 15deg;
+  --_btn-bg: var(--theme-bg);
+  --_btn-bg-hover: var(--theme-bg-hover);
+  --_btn-text: var(--theme-text);
+  --_btn-text-shadow: var(--theme-shadow);
+  --_bounce-ease: cubic-bezier(.5, 1.75, .75, 1.25);
+
+  /* remove <ul> margins */
+  margin: 0;
+
+  /* vertical rag-right layout */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5vh;
+  perspective: 30vw;
+  /* create 3D space context */
+  transform-style: preserve-3d;
+
+  /* clamped menu rotation to not be too extreme */
+  transform: 
+    rotateY(
+      
+      clamp(
+        calc(var(--_max-rotateY) * -1), 
+        var(--y), 
+        var(--_max-rotateY)
+      )
+    )
+    rotateX(
+      
+    clamp(
+        calc(var(--_max-rotateX) * -1), 
+        var(--x), 
+        var(--_max-rotateX)
+      )
+    );
+    animation: rotate-y 7s ease-in-out infinite;
+  
+
+}
+/* removes Safari focus ring on <ul> after button interaction */
+&:focus {
+    outline: none;
+}
+/* @media (--motionOK) {
+    will-change: transform;
+    transition: transform .1s ease;
+    animation: rotate-y 5s ease-in-out infinite;
+} */
+  
+    /* @media (--dark) {
+    --theme: hsl(255 53% 50%);
+    --theme-bg: hsl(255 53% 71% / 25%);
+    --theme-bg-hover: hsl(255 53% 50% / 40%);
+    --theme-shadow: hsl(255 53% 10% / 25%);
+  }
+  @media (--HDcolor) {
+    @supports (color: color(display-p3 0 0 0)) {
+      --theme: color(display-p3 .4 0 .9);
+    }
+  } */
+@keyframes rotate-y {
+  33% {
+    transform: rotateY(25deg) rotateX(-6deg);
+  }
+  66% {
+    transform: rotateY(-25deg) rotateX(-6deg);
+  }
+}
+#uname{
+  color: rgb(90, 192, 240);
+  font-weight: 600;
+}
+
+.threeD-button-set > li {
+  /* change display type from list-item */
+  display: inline-flex;
+
+  /* create context for button pseudos */
+  position: relative;
+
+  /* create 3D space context */
+  transform-style: preserve-3d; 
+}
+
+.threeD-button-set a {
+  /* strip out default button styles */
+  appearance: none;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  
+  /* bring in brand styles via props */
+  background-color: var(--_btn-bg);
+  color: var(--_btn-text);
+  text-shadow: 0 1px 1px var(--_btn-text-shadow);
+
+  font-size: min(5vmin, 3rem);
+  font-family: Audiowide;
+  padding-block: .75ch;
+  padding-inline: 2ch;
+  border-radius: 5px 20px;
+
+  /* prepare for 3D perspective transforms */
+  transform: translateZ(var(--distance));
+  transform-style: preserve-3d;
+  
+  &:is(:hover, :focus-visible):not(:active) {
+    /* subtle distance plus bg color change on hover/focus */
+    --distance: 15px;
+    background-color: var(--_btn-bg-hover);
+
+    /* if motion is OK, setup transitions and increase distance */
+    @media (--motionOK) {
+      --distance: 3vmax;
+
+      transition-timing-function: var(--_bounce-ease);
+      transition-duration: .4s;
+
+      &::after  { transition-duration: .5s }
+      &::before { transition-duration: .3s }
+    }
+  }
+  
+  &::after,
+  &::before {
+    /* create empty element */
+    content: '';
+    opacity: .8;
+
+    /* cover the parent (button) */
+    position: absolute;
+    inset: 0;
+
+    /* style the element for border accents */
+    border: 1px solid var(--theme);
+    border-radius: 5px 20px;
+
+    /* move in Z space with a multiplier */
+    transform: translateZ(calc(var(--distance) / 3));
+
+    /* if motion is OK, transition the Z space move */
+    @media (--motionOK) {
+      transition: transform .1s ease-out;   
+    }
+  }
+  
+  /* exceptions for one of the pseudo elements */
+  /* this will be pushed back and have a thicker border */
+  &::before {
+    border-width: 3px;
+    transform: translateZ(calc(var(--distance) / 3 * -1));
+
+    /* in dark mode, it glows! */
+    @media (--dark) {
+      box-shadow: 
+        0 0 25px var(--theme), 
+        inset 0 0 25px var(--theme);
+    }
+  }
+  
+  @media (--motionOK) {
+    will-change: transform;
+    transition: 
+      transform .2s ease ,
+      background-color .5s ease;
+  }
+  @keyframes rotate-y {
+  50% {
+    transform: rotateY(15deg) rotateX(-6deg);
+  }
+ 
+}
+  
+}
+
+
+  </style>
+
+</head> 
+
+ <body> 
+
+  
+
+  
+  <section>
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div>
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div>
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> 
+    <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div> <div class="hept"></div><div class="hept1"></div>
+
+   <div class="signin"> 
+
+    <div class="content"> 
+
+     <h2 id="uname"></h2> 
+
+     <div class="form"> 
+       <form id="regis-form">
+        <ul class="threeD-button-set">
+          <li class ="menu-item"><a href="snake.html">Snake Game</a></li>
+          <li class ="menu-item"><a href="memory.html">Memory Game</a></li>
+          <li class ="menu-item"><a href="typinggame.html">Type to Shoot</a></li>
+          <li class ="menu-item"><a href="car.html">Racing Car</a></li>
+          <li class ="menu-item"><a onclick="logout()" href="index.html">Log out</a></li>
+        </ul>
+      </form>
+
+     </div> 
+
+    </div> 
+
+   </div> 
+
+  </section> 
+
+  <script type="application/javascript">
+    document.getElementById('uname').innerText = 'Hello '+localStorage.getItem('curuser') + '!';
+
+    let menuSettingAll = document.querySelectorAll(".menu-item")
+    let menuSettingAllArray = [...menuSettingAll]
+
+    function soundEffects(url) {
+  let a = new Audio(url)
+  a.play()
+}
+
+
+
+menuSettingAllArray.map((menuItem) => {
+  menuItem.removeEventListener(
+    "mouseover", () => soundEffects("http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3")
+  )
+  menuItem.addEventListener(
+    "mouseover", () => soundEffects("http://codeskulptor-demos.commondatastorage.googleapis.com/pang/pop.mp3")
+  )
+})
+
+
+function logout(){
+  localStorage.removeItem('curuser');
+}
+  
+ </script>
+
+ </body>
+
+</html>
